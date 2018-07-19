@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">ChronosSharing</string>
+    <string name="facebook_app_id">499038463865767</string>
+    <string name="fb_login_protocol_scheme">fb499038463865767</string>
+    <string name="title_activity_main">MainActivity</string>
+</resources>

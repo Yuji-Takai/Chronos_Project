@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "620418777411",
+    "firebase_url": "https://chronossharing.firebaseio.com",
+    "project_id": "chronossharing",
+    "storage_bucket": "chronossharing.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:620418777411:android:1d0d263c9c6a5130",
+        "android_client_info": {
+          "package_name": "com.getcarvi.chronossharing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "620418777411-pman0g89k0tjherq988u59imstda55oh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.getcarvi.chronossharing",
+            "certificate_hash": "790420326399b82bd57110d3483fd6d24c5ccb83"
+          }
+        },
+        {
+          "client_id": "620418777411-p53ob4cc9mmg76mgtbt4dlf5jhamr98s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDF7FeRzwWEQAdy9sf3SMqKq1vMKAthVg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "620418777411-p53ob4cc9mmg76mgtbt4dlf5jhamr98s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
