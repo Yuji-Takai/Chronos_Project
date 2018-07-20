@@ -5,15 +5,13 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.getcarvi.chronossharing.R;
-import com.getcarvi.chronossharing.model.Building;
-import com.getcarvi.chronossharing.model.User;
+import com.getcarvi.chronossharing.modelManager.BuildingManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -89,17 +87,9 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 String uid = mAuth.getCurrentUser().getUid();
-                                if (((boolean) dataSnapshot.child("isAdmin").getValue()) && (dataSnapshot.child("building").getValue() == null)) {
-                                    Intent intent = new Intent(LoginActivity.this, AdminAddBuilding.class);
-                                    intent.putExtra("uid", uid);
-                                    startActivity(intent);
-                                } else if ((boolean) dataSnapshot.child("isAdmin").getValue()) {
+                                if ((boolean) dataSnapshot.child("isAdmin").getValue()) {
                                     Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
                                     intent.putExtra("building", (String) dataSnapshot.child("building").getValue());
-                                    startActivity(intent);
-                                } else if (dataSnapshot.child("building").getValue() == null){
-                                    Intent intent = new Intent(LoginActivity.this, UserSetUpActivity.class);
-                                    intent.putExtra("uid", uid);
                                     startActivity(intent);
                                 } else {
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);

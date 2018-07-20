@@ -11,6 +11,7 @@ import android.widget.EditText;
 import com.getcarvi.chronossharing.R;
 import com.getcarvi.chronossharing.model.Building;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,8 +25,6 @@ public class AdminAddBuilding extends AppCompatActivity {
     private EditText mNameField;
     private EditText mAddressField;
     private Button mSubmitBtn;
-    private FirebaseAuth mAuth;
-    private FirebaseDatabase mDatabase;
     private DatabaseReference mUserRef;
     private DatabaseReference mBuildingRef;
     private String uid;
@@ -36,12 +35,12 @@ public class AdminAddBuilding extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_add_building);
 
-        mAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
         mUserRef = mDatabase.getReference("user");
         mBuildingRef = mDatabase.getReference("building");
 
-        uid = getIntent().getStringExtra("uid");
+        uid = mAuth.getCurrentUser().getUid();
 
         mNameField = (EditText) findViewById(R.id.nameField);
         mAddressField = (EditText) findViewById(R.id.addressField);

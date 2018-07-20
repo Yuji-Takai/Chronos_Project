@@ -1,8 +1,8 @@
-package com.getcarvi.chronossharing.controller;
+package com.getcarvi.chronossharing.modelManager;
 
 import android.support.annotation.NonNull;
 
-import com.getcarvi.chronossharing.model.Building;
+import com.getcarvi.chronossharing.model.Vehicle;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -12,15 +12,14 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BuildingManager {
-    private List<String> buildingList;
-    private FirebaseDatabase mDatabase;
+public class VehicleManager {
+    private List<Vehicle> vehicleList;
     private DatabaseReference mRef;
 
-    public BuildingManager () {
-        mDatabase = FirebaseDatabase.getInstance();
-        mRef = mDatabase.getReference("building");
-        buildingList = new ArrayList<>();
+    public VehicleManager () {
+        FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
+        mRef = mDatabase.getReference("vehicle");
+        vehicleList = new ArrayList<>();
         queryInit();
     }
 
@@ -29,13 +28,10 @@ public class BuildingManager {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot vehicleSnapShot: dataSnapshot.getChildren()) {
-                    String building = vehicleSnapShot.getKey();
-                    if (!buildingList.contains(building)) {
-                        buildingList.add(building);
-                    }
+                    Vehicle vehicle = vehicleSnapShot.getValue(Vehicle.class);
+                    if (!vehicleList.contains(vehicle)) { vehicleList.add(vehicle); }
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -43,5 +39,11 @@ public class BuildingManager {
         });
     }
 
-    public List<String> getBuildingList() { return buildingList; }
+    public List<Vehicle> getVehicleList(String building) {
+        List<Vehicle> list = new ArrayList<>();
+        for (Vehicle vehicle: vehicleList) {
+            if (vehicle.getBuilding().equals(building)) { list.add(vehicle); }
+        }
+        return list;
+    }
 }

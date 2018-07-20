@@ -10,15 +10,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Choose your building" />
+        android:text="Choose your building"
+        android:textColor="@android:color/black" />
 
     <Spinner
         android:id="@+id/buildingField"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@android:color/transparent"
-        android:dropDownWidth="match_parent"
-        android:popupBackground="@android:color/transparent" />
+        android:dropDownWidth="match_parent" />
 
     <Button
         android:id="@+id/finishBtn"

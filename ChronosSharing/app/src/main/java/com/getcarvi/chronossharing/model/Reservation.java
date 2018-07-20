@@ -3,7 +3,8 @@ package com.getcarvi.chronossharing.model;
 import java.util.Date;
 
 public class Reservation {
-    private Vehicle vehicle;
+    private String vehicle;
+    private String user;
     private Date date;
 
     /**
@@ -13,13 +14,17 @@ public class Reservation {
 
     }
 
-    public Reservation(Vehicle vehicle, Date date) {
+    public Reservation(String vehicle, String user, Date date) {
         this.vehicle = vehicle;
+        this.user = user;
         this.date = date;
     }
 
-    public Vehicle getVehicle() { return this.vehicle; }
-    public void setVehicle(Vehicle vehicle) { this.vehicle = vehicle; }
+    public String getVehicle() { return this.vehicle; }
+    public void setVehicle(String vehicle) { this.vehicle = vehicle; }
+
+    public String getUser() { return this.user; }
+    public void setUser(String user) { this.user = user; }
 
 
     public Date getDate() { return this.date; }

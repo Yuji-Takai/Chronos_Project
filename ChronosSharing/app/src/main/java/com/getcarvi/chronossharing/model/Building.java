@@ -11,7 +11,6 @@ public class Building {
     private String address;
     private double longitude;
     private double latitude;
-    private List<Vehicle> vehicles;
 
 
     /**
@@ -26,18 +25,17 @@ public class Building {
      * @param name
      * @param address
      */
-    public Building(String name, String address) { this(name, address, 0, 0, new ArrayList<Vehicle>());}
+    public Building(String name, String address) { this(name, address, 0, 0);}
 
 
-    public Building(String name, double longitude, double latitude) { this(name, null, longitude, latitude, new ArrayList<Vehicle>());}
+    public Building(String name, double longitude, double latitude) { this(name, null, longitude, latitude);}
 
 
-    public Building(String name, String address, double longitude, double latitude, List<Vehicle> vehicles) {
+    public Building(String name, String address, double longitude, double latitude) {
         this.name = name;
         this.address = address;
         this.longitude = longitude;
         this.latitude = latitude;
-        this.vehicles = vehicles;
     }
 
     @Override
@@ -54,8 +52,5 @@ public class Building {
 
     public double getLatitude() { return this.latitude; }
     public void setLatitude(double latitude) { this.latitude = latitude; }
-
-    public List<Vehicle> getVehicles() { return this.vehicles; }
-    public void setVehicles(List<Vehicle> vehicles) { this.vehicles = vehicles; }
 
 }

@@ -13,20 +13,18 @@ public class Vehicle {
     private String make;
     private String model;
     private String vin;
-    private String location;
+    private String building;
 
     public Vehicle() {
 
     }
 
-    public Vehicle(String make, String model, int year, String vin) { this(make, model, year, vin, null); }
-
-    public Vehicle(String make, String model, int year, String vin, String location) {
+    public Vehicle(String make, String model, int year, String vin, String building) {
         this.make = make;
         this.model = model;
         this.year = year;
         this.vin = vin;
-        this.location = location;
+        this.building = building;
     }
 
     @Override
@@ -38,7 +36,7 @@ public class Vehicle {
             return false;
         }
         final Vehicle other = (Vehicle) obj;
-        return (other.vin == this.vin) ? true : false;
+        return other.vin.equals(this.vin);
     }
 
     @Override
@@ -54,9 +52,7 @@ public class Vehicle {
     public void setModel(String model) { this.model = model; }
     public String getVin() { return this.vin; }
     public void setVin(String vin) { this.vin = vin; }
-    public String getLocation() { return this.location; }
-    public void setLocation(String location) { this.location = location; }
-
-
+    public String getBuilding() { return this.building; }
+    public void setBuilding(String location) { this.building = location; }
 
 }

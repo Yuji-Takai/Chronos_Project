@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.getcarvi.chronossharing.R;
@@ -22,6 +24,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText mNameField;
     private EditText mEmailField;
     private EditText mPasswordField;
+    private RadioGroup mAdminField;
     private Button mSignUpBtn;
 
     private FirebaseAuth mAuth;
@@ -41,6 +44,7 @@ public class SignUpActivity extends AppCompatActivity {
         mNameField = (EditText) findViewById(R.id.nameField);
         mEmailField = (EditText) findViewById(R.id.emailField);
         mPasswordField = (EditText) findViewById(R.id.passwordField);
+        mAdminField = (RadioGroup) findViewById(R.id.adminField);
         mSignUpBtn = (Button) findViewById(R.id.signupBtn);
         mSignUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,15 +69,20 @@ public class SignUpActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             String userID = mAuth.getCurrentUser().getUid();
-                            mRef.child(userID).setValue(new User(mNameField.getText().toString(), mEmailField.getText().toString()));
+                            String choice = ((RadioButton) findViewById(mAdminField.getCheckedRadioButtonId())).getText().toString();
+                            boolean isAdmin = "YES".equals(choice);
+                            mRef.child(userID).setValue(new User(mNameField.getText().toString(),
+                                    mEmailField.getText().toString(), isAdmin));
                             Toast.makeText(SignUpActivity.this,
-                                    "New account created.", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(SignUpActivity.this,
-                                    MainActivity.class));
+                                    "New account created successfully.", Toast.LENGTH_SHORT).show();
+                            Intent intent = isAdmin ?
+                                    new Intent(SignUpActivity.this, AdminAddBuilding.class)
+                                    : new Intent(SignUpActivity.this, UserSetUpActivity.class);
+
+                            startActivity(intent);
                             finish();
                         }
                     }
                 });
     }
-
 }

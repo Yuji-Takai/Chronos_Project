@@ -30,9 +30,10 @@ public class User {
      * The default constructor, takes in a Name and Email from signup
      * @param name - User's name
      * @param email - User's email (and email linked with authentication)
+     * @param isAdmin - if user is an admin
      */
-    public User(String name, String email) {
-        this(name, email, false, null, new ArrayList<Reservation>(), 0); }
+    public User(String name, String email, boolean isAdmin) {
+        this(name, email, isAdmin, null, new ArrayList<Reservation>(), 0); }
 
     /**
      * Another constructor, taking in the reserveHours
@@ -52,6 +53,19 @@ public class User {
         this.reservations = reservations;
         this.reservedHours = 0;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        } else if (!(obj instanceof User)) {
+            return false;
+        }
+        User other = (User) obj;
+        return (this.name.equals(other.name)) && (this.email.equals(other.name));
+    }
+
+
 
     /**
      * Getter for Name
